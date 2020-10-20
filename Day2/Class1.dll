@@ -1,0 +1,16 @@
+using System;
+
+
+namespace Sqr_Cube_PrivateAsm
+{
+    public class Class1
+    {
+        public float sqr(int n) {
+            return n * n;
+        }
+
+        public float cube(int n) {
+            return n * n * n;
+        }
+    }
+}
