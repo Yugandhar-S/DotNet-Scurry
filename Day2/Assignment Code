@@ -1,0 +1,40 @@
+using System;
+using Sqr_Cube_PrivateAsm;
+
+namespace SqrCubeApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(new Class1().sqr(10));
+            Console.WriteLine(new Class1().cube(3));
+            int num1, num2;
+            if (int.TryParse(Console.ReadLine(), out num1))
+            {
+                if (int.TryParse(Console.ReadLine(), out num2))
+                    Console.WriteLine(num1 + num2);
+            }
+            else
+                Console.WriteLine("Give  Number");
+
+            String s1, s2;
+            s1=Console.ReadLine();
+            s2 = Console.ReadLine();
+            Console.WriteLine("HI THERE, {0}",s1+s2);
+
+            int n1;
+            if (int.TryParse(Console.ReadLine(), out n1))
+                Console.WriteLine("The Square is ",new Class1().sqr(n1));
+            else
+                Console.WriteLine("Number is not available");
+
+            int b1;
+            if (int.TryParse(Console.ReadLine(), out b1))
+                Console.WriteLine("The Byte is ",(byte)b1);
+
+            Console.ReadLine();
+
+        }
+    }
+}
