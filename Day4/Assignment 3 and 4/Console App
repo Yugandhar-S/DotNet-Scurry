@@ -1,0 +1,48 @@
+/*
+ * Q3. Create a class customer having member Id, name, billamount.
+ * When you create a object allow to have default vale. Print default value of id,name, billamount.
+ * 
+ * Q4. Create a class Printer with a private constructor. 
+ * Your application should give only one reference of the printer object.
+ * 
+ * */
+
+using System;
+
+
+namespace CustomerApp
+{
+    class Customer
+    {
+        public int MemberId { get; set; }
+        public string CustomerName { get; set; }
+        public int BillAmout { get; set; }
+    }
+
+    class Printer
+    {
+        static Printer printer;
+        private Printer()
+        {
+            Console.WriteLine("Invoked Privately");
+        }
+
+        public static Printer getPrinter()
+        {
+            if (printer == null)
+                return new Printer();
+            else
+                return printer;
+        } 
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Customer c = new Customer();
+            Console.WriteLine(c.MemberId+" "+c.CustomerName+" "+c.BillAmout);
+            Printer pw = Printer.getPrinter();
+        }
+    }
+}
