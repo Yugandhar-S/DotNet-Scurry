@@ -1,0 +1,4 @@
+Q2. Create a class Employee having private instance member Id, Name Salary, netsalary. 
+Create method calculate_netsalarywho’s job is to deduct 10% of TDS.. Write method display which will display name and netsalary. 
+This application will be classlibrary.
+Create console application and use this class library. Create at least two object of Employee class 
