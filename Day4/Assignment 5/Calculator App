@@ -1,0 +1,19 @@
+using System;
+using Calculator_22;
+
+namespace CalculatorApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = 10;
+            double d = 10.5;
+            Console.WriteLine(Calculator.square(n));
+            Console.WriteLine(Calculator.cube(n));
+            Console.WriteLine(Calculator.absolute(n));
+            Console.WriteLine(Calculator.floor(d));
+            Console.WriteLine(Calculator.ceil(d));
+        }
+    }
+}
