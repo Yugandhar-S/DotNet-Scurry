@@ -1,0 +1,2 @@
+Q5. Create a class calculator having  static method square, cube, absolute, floor,ceil who’s job is to find
+square, cube, absolute (2.2 ==2)floor(eg. 2.7==O/P==2) , Ceil(eg 2.9==3) value respectively.
