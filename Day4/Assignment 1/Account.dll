@@ -1,0 +1,48 @@
+/*
+ * Create a class Account having private instance member Id, Name Balanceamt.
+ * Create method deposit who’s job is to increase Balanceamtby the amout deposited buy account holder.
+ * Create method withdraw who’s job is to decrease Balanceamtby the amoutwithdrwan buy account holder.
+ * Write method display which will display name and Balanceamt. This application will be classlibrary.
+ * */
+
+using System;
+
+
+namespace Account_22
+{
+    public class Account
+    {
+        int memberId;
+        string Name;
+        int balanceAmt;
+
+        public Account(int memberId, string Name, int balanceAmt)
+        {
+            this.memberId = memberId;
+            this.Name = Name;
+            this.balanceAmt = balanceAmt;
+        }
+
+        public void Deposit(int amt)
+        {
+            balanceAmt = balanceAmt + amt;
+        }
+
+        public void Withdraw(int amt)
+        {
+            if(amt>balanceAmt)
+                Console.WriteLine("Not Enough Balance");
+            else
+            {
+                balanceAmt = balanceAmt - amt;
+                Console.WriteLine("Amount Withdrawn {0} and remaining balance is {1}",amt, balanceAmt);
+            }
+                
+        }
+
+        public void DisplayAccount()
+        {
+            Console.WriteLine("The Account holder is {0}, Remaining Balance is {1}",Name,balanceAmt);
+        }
+    }
+}
