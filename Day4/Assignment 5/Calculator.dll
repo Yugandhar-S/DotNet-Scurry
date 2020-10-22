@@ -1,0 +1,46 @@
+/*
+ * Q5. Create a class calculator having  static method square, cube, absolute, floor,ceil who’s job is to find
+ * square, cube, absolute (2.2 ==2)floor(eg. 2.7==O/P==2) , Ceil(eg 2.9==3) value respectively.
+ * 
+ * */
+
+using System;
+
+
+namespace Calculator_22
+{
+    public class Calculator
+    {
+        static Calculator()
+        {
+            Console.WriteLine("Welcome to Calculator v1.0");
+        }
+
+        public static int square(int n)
+        {
+            return n * n;
+        }
+
+        public static int cube(int n)
+        {
+            return n * n * n;
+        }
+
+
+        public static int absolute(int n)
+        {
+            return Math.Abs(n);
+        }
+
+
+        public static double floor(double n)
+        {
+            return Math.Floor(n);
+        }
+
+        public static double ceil(double n)
+        {
+            return Math.Ceiling(n);
+        }
+    }
+}
