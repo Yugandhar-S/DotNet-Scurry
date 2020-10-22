@@ -1,0 +1,26 @@
+using System;
+using Account_22;
+
+namespace AccountApp_22
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Account a1 = new Account(1, "Yugandhar", 5000);
+            a1.Deposit(100);
+            a1.DisplayAccount();
+            a1.Withdraw(100);
+            a1.DisplayAccount();
+            a1.Withdraw(5000);
+            a1.DisplayAccount();
+            a1.Withdraw(100);
+            Console.WriteLine("..........................");
+            Account a2 = new Account(2, "VITA", 1000);
+            a2.Deposit(52000);
+            a2.DisplayAccount();
+            a2.Withdraw(15000);
+            a2.DisplayAccount();
+        }
+    }
+}
