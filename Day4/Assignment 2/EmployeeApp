@@ -1,0 +1,19 @@
+using System;
+using Employee_22;
+
+namespace EmployeeApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee e1 = new Employee(1, "Yugandhar", 50000);
+            e1.NetSalary();
+            e1.Display();
+
+            Employee e2 = new Employee(2, "VITA", 13000);
+            e2.NetSalary();
+            e2.Display();
+        }
+    }
+}
