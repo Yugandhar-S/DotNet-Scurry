@@ -1,0 +1,39 @@
+/*
+ * Create a class Employee having private instance member Id, Name Salary, netsalary. 
+ * Create method calculate_netsalarywho’s job is to deduct 10% of TDS.. Write method display which will display name and netsalary.
+ * This application will be classlibrary.
+ * 
+ * */
+
+
+using System;
+
+
+namespace Employee_22
+{
+    public class Employee
+    {
+        public int MemberId { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
+        public double netSal;
+
+        public Employee(int MemberId, string Name, int Salary)
+        {
+            this.MemberId = MemberId;
+            this.Name = Name;
+            this.Salary = Salary;
+        }
+
+        public void NetSalary()
+        {
+            netSal = Salary - Salary * 0.1;
+            Console.WriteLine("The net Salary is {0}",netSal);
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("The Account holder is {0} with ID: {1} and has NetSalary {2}",MemberId,Name,netSal);
+        }
+    }
+}
