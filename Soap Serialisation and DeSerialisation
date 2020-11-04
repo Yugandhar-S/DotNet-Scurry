@@ -1,0 +1,86 @@
+/******************************************************************************
+To support SOAP serialization, the .NET Framework provides the SoapFormatter class. 
+ * This class is defined in the System.Runtime.Serialization.Formatters.
+ * Soap namespace that is part of the System.Runtime.Serialization.Formatters.Soap.dll assembly. 
+ * In order to use The SoapFormatter class, you must reference this assembly. 
+ * Then, you can create an object and initialize it as you see fit. Before saving it, as always,
+ * create a Stream-based object that would indicate the name (and location) of the file and the type of action to perform. 
+ * Then, declare a SoapFormatter variable using its default constructor. To actually save the object, call the Serialize()
+ * method of this class. This method uses the same syntax as that of the BinaryFormatter class: it takes two arguments.
+ * The first is a Stream-based object. The second is the object that needs to be serialized.
+
+ * 
+ * 
+ * De-serialization in soap is performed exactly as done for the binary de-serialization. 
+ * To support it, the SoapFormatter class is equipped with the Deserialize() method. 
+ * This method uses the same syntax as its equivalent of the BinaryFormatter class.
+*******************************************************************************/
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Soap;
+
+[Serializable]
+public class Car
+{
+    public string Make;
+    public string Model;
+    public uint Year;
+    public byte Color;
+}
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Car vehicle = new Car();
+
+        vehicle.Make = "Volvo";
+        vehicle.Model = "S40";
+        vehicle.Year = 2006;
+        vehicle.Color = 3;
+
+        FileStream stmCar =
+            new FileStream("Car2.car",
+                           FileMode.Create);
+        SoapFormatter sopCar = new SoapFormatter();
+
+        sopCar.Serialize(stmCar, vehicle);
+        //You will have to close the file after Storing it
+        stmCar.Close();
+
+        //Taking a Pause
+        Console.ReadLine();
+
+        //Deserialisation Starts
+        stmCar = new FileStream("Car2.car", FileMode.Open);
+        sopCar = new SoapFormatter();
+        vehicle = (Car)sopCar.Deserialize(stmCar);
+
+        Console.WriteLine("Car Information");
+        Console.WriteLine("Make: {0}", vehicle.Make);
+        Console.WriteLine("Model: {0}", vehicle.Model);
+        Console.WriteLine("Year: {0}", vehicle.Year);
+        Console.Write("Color: ");
+        switch (vehicle.Color)
+        {
+            case 1:
+                Console.WriteLine("Black");
+                break;
+            case 2:
+                Console.WriteLine("Gray");
+                break;
+            case 3:
+                Console.WriteLine("White");
+                break;
+            case 4:
+                Console.WriteLine("Red");
+                break;
+            case 5:
+                Console.WriteLine("Blue");
+                break;
+        }
+    }
+}
+
+
+
