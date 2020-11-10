@@ -1,0 +1,122 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace November_TestApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> myList = new List<string>();
+            myList.Add("Yugandhar");
+            myList.Add("Sachin");
+            myList.Add("Mikhi");
+            myList.Add("Rohan");
+            Console.WriteLine(myList);
+            foreach (string s in myList)
+                Console.WriteLine("My Friends are " + s);
+            myList.Sort();
+            foreach (string s in myList)
+                Console.WriteLine("The sorted names are " + s);
+
+
+
+            SortedList<string, int> mySortedList = new SortedList<string, int>();
+            mySortedList.Add("Butler", 73000);
+            mySortedList.Add("Sanoj", 59000);
+            mySortedList.Add("Piku", 45000);
+            mySortedList.Add("Frank", 99000);
+
+            ICollection<string> gkeys = mySortedList.Keys;
+            Console.WriteLine("The key retrieved are ");
+            foreach (string s in gkeys)
+            {
+                Console.WriteLine("KEY : {0}", s);
+                Console.WriteLine("The retrieved value using key is {0}", mySortedList[s]);
+                Console.WriteLine("................");
+            }
+
+            Console.WriteLine("USing ForEach and KEYVALUEPAIR");
+            foreach (KeyValuePair<string, int> s in mySortedList)
+                Console.WriteLine(s);
+
+            Customer c = new Customer();
+            List<CustomerPoJo> customers = c.Products();
+            foreach(CustomerPoJo person in customers)
+                Console.WriteLine(person);
+
+           c.ProductCnt();
+           
+        }
+    }
+
+    class CustomerPoJo
+    {
+        public int Id { get; set; }
+        public String Name { get; set; }
+        public String Location { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("The Id is {0}, has Name {1} and stays at {2}", Id,Name, Location);
+        }
+
+    }
+
+
+    class Customer
+    {
+        public void ProductCnt()
+        {
+            string connectString = ConfigurationManager.ConnectionStrings["TestConn"].ConnectionString;
+            using (SqlConnection scn = new SqlConnection(connectString))
+            {
+                try
+                {
+                    SqlCommand smd=new SqlCommand("Select Count(Id) from Customer",scn);
+                    scn.Open();
+
+                    int totalRows=0;
+                    totalRows= (int)smd.ExecuteScalar();
+                    Console.WriteLine("The total number of Customer's are {0}",totalRows);
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+            }
+        }
+
+
+        public List<CustomerPoJo> Products()
+        {
+            List<CustomerPoJo> myList = new List<CustomerPoJo>();
+            
+            string connectionString = ConfigurationManager.ConnectionStrings["TestConn"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Customer", con);
+                
+                con.Open();
+                Console.WriteLine("connected");
+                SqlDataReader rdr = cmd.ExecuteReader(); //returns object of sqldatareder
+                
+                while (rdr.Read())
+                {
+                    CustomerPoJo cj = new CustomerPoJo();
+                    cj.Id = Convert.ToInt32(rdr["Id"]);
+                    cj.Name = (rdr["Name"]).ToString();
+                    cj.Location = (rdr["Location"]).ToString();
+                    myList.Add(cj);
+                }
+                return myList;
+            }
+        }
+    }
+}
