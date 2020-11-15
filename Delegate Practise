@@ -1,0 +1,60 @@
+using System;
+using System.Threading;
+
+namespace Delegate_Practise
+{
+    //Publisher Class
+    class VideoEncode
+    {
+        //1.Defined a delegate which act as a Contract, subscriber to maintain same method signature
+        public delegate void VideoEncodedEventHandler();
+
+        //2.Defined the event
+        public event VideoEncodedEventHandler onVideoEncoded;
+
+        public void videoEncode()
+        {
+            Console.WriteLine("Encode Video");
+            Thread.Sleep(3000);
+            OnVideoEncoded();
+
+        }
+
+        protected virtual void OnVideoEncoded()
+        {
+            //3.Raised the Event
+            if (onVideoEncoded != null)
+                onVideoEncoded();
+        }
+    }
+
+    //Subscriber Class
+    class MailService
+    {
+        public void VideoEncoded()
+        {
+            Console.WriteLine("We are in Mail service and Sending email.");
+        }
+    }
+
+    //Subscriber Class
+    class MessagingService
+    {
+        public void VideoEncoded()
+        {
+            Console.WriteLine("We are in Messaging Service and Sending Message");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var VideoEncoder = new VideoEncode();//Publisher
+            var mailService = new MailService();//Subscriber
+            VideoEncoder.onVideoEncoded += mailService.VideoEncoded; //Registering method with EventHandler i.e  onVideoEncoded event
+            VideoEncoder.onVideoEncoded += new MessagingService().VideoEncoded;
+            VideoEncoder.videoEncode();
+        }
+    }
+}
