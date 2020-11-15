@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeLib
+{
+    public abstract class Employee
+    {
+        static Employee()
+        {
+            Console.WriteLine("Employee Record of VITA");
+        }
+
+        static int getId;
+
+        public int Id{ get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
+
+        public Employee(string Name, int Salary)
+        {
+            this.Id = ++getId;
+            this.Name = Name;
+            this.Salary = Salary;
+        }
+
+        //Write abstract method givebonus.
+        public abstract void giveBonus();
+
+        public override string ToString()
+        {
+            return string.Format("The Employee has id {0}, Name {1} and Salary {2}", Id, Name, Salary);
+        }
+    }
+
+    public class PermanentEmployee : Employee
+    {
+        public PermanentEmployee(string Name, int Salary) : base(Name, Salary) { }
+
+        public override void giveBonus()
+        {
+            Console.WriteLine("{1} are Permanent Emp, Salary is {0} with Bonus of 5000",Salary+5000,Name);
+        }
+    }
+
+    public class TemporaryEmployee : Employee
+    {
+        public TemporaryEmployee(string Name, int Salary) : base(Name, Salary) { }
+
+        public override void giveBonus()
+        {
+            Console.WriteLine("{1} are Temporary Employee, Bonus is 2000, Salary is {0}", Salary+2000,Name);
+        }
+    }
+}
