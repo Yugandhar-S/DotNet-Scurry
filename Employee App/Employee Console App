@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EmployeeLib;
+
+namespace Employee_App
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var e1 = new TemporaryEmployee("Yugandhar", 65000);
+            e1.giveBonus();
+            Console.WriteLine(e1);
+            var e2 = new PermanentEmployee("VITA", 95211);
+            e2.giveBonus();
+            Console.WriteLine(e2);
+        }
+    }
+}
