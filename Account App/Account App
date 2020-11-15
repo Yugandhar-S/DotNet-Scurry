@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Account_1;
+
+namespace Account_app
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var m1 = new MessagingService();//Subscriber
+            var a1=new CurrentAccount("Yugandhar", 65000);//Publisher
+            a1.afterWithDraw += m1.amtWithDrawn;//Registering an Event
+            a1.Deposit(2000);
+            a1.withDraw(3000);
+
+        }
+    }
+}
