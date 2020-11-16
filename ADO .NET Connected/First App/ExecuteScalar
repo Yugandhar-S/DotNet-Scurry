@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Configuration;
+
+
+namespace Qt1_6_11
+{
+    class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; } 
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["EmployeeConn"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Employee", connection);
+                connection.Open();
+                Console.WriteLine("Connected");
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Console.WriteLine("{0} {1} {2}",rdr["Id"],rdr["Name"],rdr["Salary"]);
+                }
+            }
+
+            Console.WriteLine("Let's do it with strong type association");
+            var myList = getStrongData();
+            foreach (Employee e in myList)
+                Console.WriteLine("{0} {1} {2}",e.Id,e.Name,e.Salary);
+
+
+            //EXECUTE Scalar 
+            Console.WriteLine("Getting total Salary of all Employee's using Execute Scalar");
+            int totalSalary = getTotalSalary();
+            Console.WriteLine("The total Salary of all Employee's is "+totalSalary);
+            Console.WriteLine("The Total Number of Employee are "+getEmployeeCount());
+
+        }
+
+
+        static List<Employee> getStrongData()
+        {
+            List<Employee> myList = new List<Employee>();
+            string ConnectionString = ConfigurationManager.ConnectionStrings["EmployeeConn"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Employee", connection);
+                connection.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Employee e = new Employee();
+                    e.Id = Convert.ToInt32(rdr["Id"]);
+                    e.Name = rdr["Name"].ToString();
+                    e.Salary = Convert.ToInt32(rdr["Salary"]);
+                    myList.Add(e);
+                }
+            }
+
+            return myList;
+        }
+
+
+        static int getTotalSalary()
+        {
+            int totalSalary=0;
+            string connectionStr = ConfigurationManager.ConnectionStrings["EmployeeConn"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Select SUM(Salary) from Employee", connection);
+                    connection.Open();
+                    totalSalary = (int)cmd.ExecuteScalar();
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); }
+            }
+            return totalSalary;
+        }
+
+        static int getEmployeeCount()
+        {
+            int empCount = 0;
+            string ConnectionString = ConfigurationManager.ConnectionStrings["EmployeeConn"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Select COUNT(Id) from Employee", connection);
+                    connection.Open();
+                    empCount = (int)cmd.ExecuteScalar();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+            return empCount;
+        }
+    }
+}
