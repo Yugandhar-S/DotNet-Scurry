@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Account_1;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Soap;
 
 namespace Account_app
 {
@@ -16,6 +18,19 @@ namespace Account_app
             a1.afterWithDraw += m1.amtWithDrawn;//Registering an Event
             a1.Deposit(2000);
             a1.withDraw(3000);
+
+            //SOAP serialization
+            FileStream f1 = new FileStream("Account.acc", FileMode.Create);
+            SoapFormatter sfm = new SoapFormatter();
+            sfm.Serialize(f1, a1);
+            f1.Close();
+
+
+            //Deserialisation
+            f1 = new FileStream("Account.acc", FileMode.Open);
+            var a2 = (Account)sfm.Deserialize(f1);
+            if(a2 is CurrentAccount)
+                Console.WriteLine(a2);
 
         }
     }
