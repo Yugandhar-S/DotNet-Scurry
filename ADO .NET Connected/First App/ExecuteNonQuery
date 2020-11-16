@@ -10,6 +10,7 @@ using System.Data;
 
 namespace Qt1_6_11
 {
+    //TO MAP Database Record
     class Employee
     {
         public int Id { get; set; }
