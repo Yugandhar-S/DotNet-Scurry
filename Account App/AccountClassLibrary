@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Account_1
 {
-   
+   [Serializable]
     public abstract class Account
     {
         //Define a delegate
@@ -72,6 +72,7 @@ namespace Account_1
         }
     }
 
+    [Serializable]
    public class SavingAccount : Account
     {
         public SavingAccount(string Name, int Balance):base(Name,Balance){}
@@ -79,7 +80,7 @@ namespace Account_1
         public override void withDraw(int amt)
         {
             if (amt > Balance || Balance < 1000)
-                throw new Exception("Cannot Withdraw");
+                throw new Exception("Cannot Withdraw : Insufficient Balance");
             else
                 Balance -= amt;
             Console.WriteLine("The Balance after Withdraw is {0}", Balance);
@@ -87,19 +88,21 @@ namespace Account_1
         }
     }
 
+    [Serializable]
    public class CurrentAccount : Account
     {
         public CurrentAccount(string Name, int Balance):base(Name,Balance) { }
         public override void withDraw(int amt)
         {
             Balance -= amt;
-            if(Balance<0)
-                Console.WriteLine("Balance is Negative");
+            if (Balance < 0)
+                throw new Exception("Balance is negative");
             Console.WriteLine("The Balance after withdraw is {0}",Balance);
             OnWithdraw();//Raising an Event
         }
     }
 
+    [Serializable]
     //Creating Subscriber CLass
     public class MessagingService{
         public  void amtWithDrawn(){
