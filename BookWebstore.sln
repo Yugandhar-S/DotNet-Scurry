@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendsRecord", "..\Friends
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CornBhel", "..\CornBhel\CornBhel.csproj", "{4E40D7F6-F35C-4251-B0AF-0A7F935D10EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCVITAProject", "..\MVCVITAProject\MVCVITAProject.csproj", "{BA4A84AA-7D3B-4F7A-8CA4-D987CC9A1C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task20", "..\Task20\Task20.csproj", "{109FF42D-A69E-474B-96D4-DE8471533D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{4E40D7F6-F35C-4251-B0AF-0A7F935D10EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E40D7F6-F35C-4251-B0AF-0A7F935D10EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E40D7F6-F35C-4251-B0AF-0A7F935D10EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4A84AA-7D3B-4F7A-8CA4-D987CC9A1C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4A84AA-7D3B-4F7A-8CA4-D987CC9A1C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4A84AA-7D3B-4F7A-8CA4-D987CC9A1C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4A84AA-7D3B-4F7A-8CA4-D987CC9A1C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109FF42D-A69E-474B-96D4-DE8471533D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109FF42D-A69E-474B-96D4-DE8471533D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109FF42D-A69E-474B-96D4-DE8471533D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109FF42D-A69E-474B-96D4-DE8471533D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
